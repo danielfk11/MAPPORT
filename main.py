@@ -35,7 +35,7 @@ try:
     print(ascii_banner)
     print("Iniciando busca...")
     print("Scanning started at: " + str(datetime.now()))
-    for port in range(79,tamnum):                                                       #buscando as portas uma por uma 
+    for port in range(1,tamnum):                                                       #buscando as portas uma por uma 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket.setdefaulttimeout(1) 
         result = s.connect_ex((target,port))
