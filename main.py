@@ -1,21 +1,21 @@
-import socket #conectar ao ip
-import requests #testar o ip
-import time #aguardar para usar
-import pyfiglet #printar banner
-from datetime import datetime  #horario atual
-import sys  #exit system
+import socket 
+import requests
+import time 
+import pyfiglet 
+from datetime import datetime 
+import sys  
 
 GREEN = "\033[0;32m"
 ascii_banner = pyfiglet.figlet_format("MAP PORT") # print banner
 print(ascii_banner)
 ip = input("-> Qual ip deseja buscar?\n-> ")
 
-if ip == '':
+if ip == '':                #caso nao tenha ip 
     print("error")
     exit()
 try:
     r = requests.get(ip)
-    if r.status_code != 200:
+    if r.status_code != 200:                #testando a conexao ao servidor 
         print("IP SEM CONEXAO")
     else:
         pass
@@ -33,12 +33,12 @@ try:
     target = socket.gethostbyname(ip)                                               # conectando ao servidor e inicando varredura
     ascii_banner = pyfiglet.figlet_format("START PORT SCAN")
     print(ascii_banner)
-    print("Iniciando busca...")
+    print("Iniciando busca...")                 
     print("Scanning started at: " + str(datetime.now()))
     for port in range(1,tamnum):                                                       #buscando as portas uma por uma 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket.setdefaulttimeout(1) 
-        result = s.connect_ex((target,port))
+        result = s.connect_ex((target,port))                                    #portas encontradas
         hora = str(datetime.now())
         if result ==0:
             name = socket.getservbyport(port)
